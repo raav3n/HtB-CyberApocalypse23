@@ -6,15 +6,15 @@ You 're still trying to collect information for your research on the alien relic
 Looks like I have to ssh into this docker instance `ssh restricted@ip -p port` and reading the sshd_config I see it accepts empty passwords so I don't need anything there. Once I'm in I realize I'm using rbash (some custom bash) and pretty much restricts me from doing anything. Reading the docker file I see the main thing that user can do is use ssh, top and uptime. 
 
 However I immediately think of GTFOBins.
-  
+
 ## Bypass
 Taking a look at GTFOBins (library with a ton of commands abusing built in OS commands) and hacktricks I came across the following.
 ```
 ssh -t localhost bash
 ```
-What this does is connect to localhost via ssh and attempts to select the shell it recieves. I ran that exact command with `-p 1337` appended because in the docker we see that 1337 is the port ssh is listening to locally. 
+What this does is ssh to localhost and attempts to select the shell it recieves. I ran that exact command with `-p 1337` appended because in the docker we see that 1337 is the port ssh is listening to locally. 
 
-In doing so we get another ssh shell but with bash this time and we are able to run normal commands. All that was left was to run
+In doing so we get another ssh shell but with bash this time and we are noo longer retricted by rbash and can run normal commands. All that was left was to run
 ```
 cat /flag
 ```

@@ -12,14 +12,14 @@ TCP: this is a commonly known port for transmitting data, when connecting to it 
 2 - Restart Instance
 3 - Get flag
 ```
-Option 1 gave me the following:
+Option 1 gave me the following information:
 
 Private key  
 Address        
 Target contract 
 Setup contract  
 
-I assumed this was useful so I stored it for later. 
+I save this for later. 
 
 RPC: I wasn't too familiar with this port but seems like its commonly used to communicate amongst machines. Anyhow I figured this was the one I needed to use for the smart contracts.
 
@@ -29,6 +29,7 @@ At this point I tried to learn a little more on how to use web3py since the READ
 - our rpc ip/port
 - the contract's address
 - contract abi (I'll get to that) 
+	- gas (is included in the abi but didnt seem like we needed it for this)
 - function name
 - function arguments
 - none (its simply just some random number blockchain uses for a block, means 'number only used once')
@@ -38,7 +39,7 @@ from there just signed it and sent the transaction.
 ### Contract abi?
 In short the abi is pretty much like rules needed by web3py that tells it how to exactly interact with the contract and how to interpret the data. Without it, it's clueless. 
 
-This was not given so I used https://remix.ethereum.org/ (an online Solidity compiler). All I had to do was upload the Unknonwn contract, run it and in the Unknown_metadata.json file it created I saw the abi.
+This was not given so I used https://remix.ethereum.org/ (an online Solidity compiler). All I had to do was upload the Unknonwn contract file, run it and in the Unknown_metadata.json file it created I saw the abi.
 ```
 "abi": [
 			{
@@ -71,7 +72,7 @@ This was not given so I used https://remix.ethereum.org/ (an online Solidity com
 ```
 
 ## Unknown Call
-One of the files given is Unknown.sol this is the smart contract we are told to call. It had one function updateSensors which set updated = true when called on if the argument version was 10.
+One of the files given is Unknown.sol this is the smart contract we are told to call. It had one function updateSensors which set updated = true when called on if the argument 'version' was 10.
 
 Looking at Setup.sol we also knew that if updated was set to true then we would be able to get our flag from that tcp port.
 ```
